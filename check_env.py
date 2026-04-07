@@ -27,17 +27,20 @@ def _python_version():
 
 check("Python ≥ 3.10", _python_version)
 
+
 # ── Required packages ─────────────────────────────────────────────────────────
 def _check_package_version(pkg_name, min_version):
     """Check if package exists and meets minimum version requirement."""
     try:
         __import__(pkg_name)
     except ImportError:
-        raise ImportError(f"package not installed")
-    
+        raise ImportError("package not installed")
+
     import importlib.metadata
+
     version = importlib.metadata.version(pkg_name)
     from packaging.version import parse
+
     if parse(version) < parse(min_version):
         raise AssertionError(f"need ≥ {min_version}, got {version}")
 
@@ -66,6 +69,7 @@ dev_requirements = [
 
 for pkg_name, min_ver in dev_requirements:
     check(f"{pkg_name} ≥ {min_ver}", lambda p=pkg_name, v=min_ver: _check_package_version(p, v))
+
 
 # ── Data file ─────────────────────────────────────────────────────────────────
 def _data_file():
