@@ -56,6 +56,7 @@ milk-balancing/
 
 ```bash
 git clone https://github.com/antisrdy/milk-balancing.git
+cd milk-balancing
 make install          # creates .venv and installs dependencies
 source .venv/bin/activate
 ```
@@ -64,6 +65,7 @@ Or manually (use `python3` if `python` is not available):
 
 ```bash
 git clone https://github.com/antisrdy/milk-balancing.git
+cd milk-balancing
 python -m venv .venv          # or: python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
