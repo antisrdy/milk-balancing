@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "milk-balancing"
+version = "0.1.0"
+description = "Pedagogical LP-based milk supply chain optimisation"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.25",
+    "pandas>=2.0",
+    "scipy>=1.11",
+    "openpyxl>=3.1",
+    "streamlit>=1.35",
+    "plotly>=5.20",
+]
+authors = [
+    {name= "Antoine Isnardy", email= "isnardy.a@gmail.com"},
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+    "jupyter>=1.0",
+    "jupyterlab>=4.0",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["milk_balancing*"]
+
+# ── Ruff (linter + formatter) ─────────────────────────────────────────────────
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]   # line length managed by formatter
+
+# ── Pytest ────────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v"
