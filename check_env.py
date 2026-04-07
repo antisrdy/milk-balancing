@@ -28,9 +28,44 @@ def _python_version():
 check("Python ≥ 3.10", _python_version)
 
 # ── Required packages ─────────────────────────────────────────────────────────
-for pkg in ["numpy", "pandas", "scipy", "openpyxl", "streamlit", "plotly"]:
-    check(f"import {pkg}", lambda p=pkg: __import__(p))
+def _check_package_version(pkg_name, min_version):
+    """Check if package exists and meets minimum version requirement."""
+    try:
+        __import__(pkg_name)
+    except ImportError:
+        raise ImportError(f"package not installed")
+    
+    import importlib.metadata
+    version = importlib.metadata.version(pkg_name)
+    from packaging.version import parse
+    if parse(version) < parse(min_version):
+        raise AssertionError(f"need ≥ {min_version}, got {version}")
 
+
+requirements = [
+    ("numpy", "1.25"),
+    ("pandas", "2.0"),
+    ("scipy", "1.11"),
+    ("openpyxl", "3.1"),
+    ("streamlit", "1.35"),
+    ("plotly", "5.20"),
+]
+
+for pkg_name, min_ver in requirements:
+    check(f"{pkg_name} ≥ {min_ver}", lambda p=pkg_name, v=min_ver: _check_package_version(p, v))
+
+# ── Dev packages (needed for exercises) ───────────────────────────────────────
+dev_requirements = [
+    ("pytest", "8.0"),
+    ("ruff", "0.4"),
+    ("jupyter", "1.0"),
+    ("jupyterlab", "4.0"),
+    ("matplotlib", "3.8"),
+    ("seaborn", "0.13"),
+]
+
+for pkg_name, min_ver in dev_requirements:
+    check(f"{pkg_name} ≥ {min_ver}", lambda p=pkg_name, v=min_ver: _check_package_version(p, v))
 
 # ── Data file ─────────────────────────────────────────────────────────────────
 def _data_file():
