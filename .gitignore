@@ -1,3 +1,6 @@
+# Notebook
+.ipynb_checkpoints/
+
 # Virtual environment
 .venv/
 venv/
