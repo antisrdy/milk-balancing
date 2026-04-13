@@ -52,20 +52,25 @@ milk-balancing/
 
 ## Quick Start
 
+### Requirements
+
+- Python ≥3.10
+- Git (for cloning the repository)
+
 ### 1 — Set up the environment
 
 ```bash
 git clone https://github.com/antisrdy/milk-balancing.git
 cd milk-balancing
+```
+
+Then:
+```bash
 make install          # creates .venv and installs dependencies
 source .venv/bin/activate
 ```
-
 Or manually (use `python3` if `python` is not available):
-
 ```bash
-git clone https://github.com/antisrdy/milk-balancing.git
-cd milk-balancing
 python -m venv .venv          # or: python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
@@ -73,6 +78,10 @@ pip install -e ".[dev]"
 
 ### 2 — Verify installation
 
+```bash
+make check
+```
+Or manually (use `python3` if `python` is not available):
 ```bash
 python check_env.py           # or: python3 check_env.py
 ```
@@ -83,14 +92,13 @@ This validates that all dependencies are installed and the LP solver works corre
 
 ```bash
 make notebook
-# or
+```
+Or manually (use `python3` if `python` is not available):
+```bash
 jupyter lab exercises/
 ```
 
 Open `exercises/build_lp.ipynb` to learn how the LP model is constructed step-by-step.
-
-**Reset functionality**: Use the "↺ Reset all to defaults" button to restore all parameters to their original values.
-
 
 ### 4 — Use the solver in Python
 
@@ -116,11 +124,15 @@ result_shock = solve_scenario(
 
 ```bash
 make run
-# or
+```
+Or manually (use `python3` if `python` is not available):
+```bash
 streamlit run app.py
 ```
 
 Open <http://localhost:8501> in your browser.  The sidebar lets you adjust demand, farm supply, spot prices, transport costs, S3 capacity, and plant headroom. The LP re-solves instantly on every change.
+
+**Reset functionality**: Use the "↺ Reset all to defaults" button to restore all parameters to their original values.
 
 ## Running the Tests
 
