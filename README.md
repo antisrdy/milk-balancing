@@ -76,8 +76,7 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-### 2 — Verify installation
-
+Now, check the installation:
 ```bash
 make check
 ```
@@ -88,7 +87,7 @@ python check_env.py           # or: python3 check_env.py
 
 This validates that all dependencies are installed and the LP solver works correctly.
 
-### 3 — Work through the exercises
+### 2 — Work through the exercises
 
 ```bash
 make notebook
@@ -100,7 +99,7 @@ jupyter lab exercises/
 
 Open `exercises/build_lp.ipynb` to learn how the LP model is constructed step-by-step.
 
-### 4 — Use the solver in Python
+### 3 — Use the solver in Python
 
 ```python
 from milk_balancing import load_data, solve_scenario
@@ -120,7 +119,7 @@ result_shock = solve_scenario(
 )
 ```
 
-### 5 — Run the interactive dashboard
+### 4 — Run the interactive dashboard
 
 ```bash
 make run
